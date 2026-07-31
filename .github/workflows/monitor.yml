@@ -2,12 +2,17 @@ name: Telegram Danger Monitor
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Запуск скрипта каждые 5 минут автоматикой GitHub
-  workflow_dispatch:      # Кнопка ручного запуска в интерфейсе GitHub
+    - cron: '*/5 * * * *'  # Запуск скрипта каждые 5 минут
+  workflow_dispatch:      # Кнопка ручного запуска
 
 jobs:
   run-monitor:
     runs-on: ubuntu-latest
+    
+    # Даем права на запись в репозиторий, чтобы сохранять состояние
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,3 +29,9 @@ jobs:
       - name: Run script
         run: |
           python main.py
+
+      - name: Save state changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto: update monitor state [skip ci]"
+          file_pattern: monitor_state.json
