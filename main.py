@@ -7,7 +7,7 @@ import requests
 # ================= НАСТРОЙКИ =================
 BOT_TOKEN = '8462452377:AAGYkGCAyHnidFsrQJUq07lc-Bisl0hvzis'
 # ⚠️ Укажите здесь ваш новый постоянный URL от Hookdeck:
-IOS_WEBHOOK_URL = 'https://events.hookdeck.com/e/lkc_ваш_уникальный_адрес'
+IOS_WEBHOOK_URL = 'https://hkdk.events/e4p92rp1iqpjyb'
 
 CHANNELS = [
     'radar_rvk',
