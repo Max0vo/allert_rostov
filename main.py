@@ -84,7 +84,13 @@ def send_ios_alert(state, channel_username, trigger_sentence, geo_match, danger_
         return state
 
     try:
-        payload_url = f"{IOS_WEBHOOK_URL}?tag=script_alert&alert=true&time={current_time}&channel={channel_username}"
+        # Кодируем текст, чтобы его можно было передать в ссылке
+        # Передаем именно trigger_sentence (саму суть), так как длинный пост может не влезть в лимит URL
+        safe_text = urllib.parse.quote(trigger_sentence)
+        
+        # Добавляем параметр &text= в конец URL
+        payload_url = f"{IOS_WEBHOOK_URL}?tag=script_alert&alert=true&time={current_time}&channel={channel_username}&text={safe_text}"
+        
         response = requests.get(payload_url, timeout=10)
 
         if response.status_code in [200, 204]:
