@@ -3,6 +3,7 @@ import json
 import os
 import re
 import requests
+import urllib.parse
 
 # ================= НАСТРОЙКИ =================
 BOT_TOKEN = '8462452377:AAGYkGCAyHnidFsrQJUq07lc-Bisl0hvzis'
